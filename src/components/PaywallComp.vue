@@ -1,17 +1,17 @@
 <template>
   <div class="mb-32">
     <div
-      class="flex flex-col items-center gap-6 justify-center text-center mt-14"
+      class="flex flex-col items-center gap-6 justify-center text-center mt-10"
     >
       <p class="font-bold headerTxt">Upgrade To Pro</p>
-      <div class="flex flex-row gap-3 mt-3">
+      <div class="flex flex-row gap-3 mt-6">
         <p class="topSelectorText">Monthly</p>
         <Switch @changed="switchChanged"></Switch>
         <p class="topSelectorText">Anually</p>
         <chip :color="'bg-emerald-400'"> Save 25% </chip>
       </div>
     </div>
-    <div class="flex items-center justify-center mt-5">
+    <div class="flex items-center justify-center mt-24">
       <div
         class="
           xl:grid
@@ -26,34 +26,28 @@
         "
       >
         <div
-          :style="pl.recommended ? 'height: 723px' : 'height: 700px'"
+          style="height: 700px"
           v-for="(pl, ix) in plans"
           :class="{
-            'shadow-2xl recommendedBorder shadow-indigo-300 h-full mt-0':
+            'shadow-2xl recommendedBorder h-full':
               pl.recommended,
           }"
-          class="
-            flex flex-col
-            mt-4
-            items-start
-            paymentCard
-            bg-gray-50
-            rounded-3xl
-          "
+          class="flex flex-col mt-4 items-start paymentCard rounded-3xl"
           :key="ix"
         >
           <div class="relative w-full">
             <div
               :class="{
-                'bg-violet-100 border-indigo-700': pl.recommended,
-                'bg-gray-100': !pl.recommended,
+                'cardRecommendedHeaderContent border-indigo-700':
+                  pl.recommended,
+                cardHeaderContent: !pl.recommended,
               }"
               class="
                 flex flex-col
                 justify-center
                 items-center
                 p-6
-                rounded-t-2xl
+                rounded-t-3xl
               "
             >
               <p
@@ -105,9 +99,9 @@
               absolute
               top-0
               right-0
-              mx-20
+              mx-16
               p-2
-              -mt-4
+              -mt-3
               bg-indigo-700
               mb-11
               text-white
@@ -127,7 +121,7 @@
               innerBox
               self-stretch
               grow
-              bg-gray-50
+              cardFeaturesContent
             "
           >
             <div class="flex flex-col items-center p-3 text-center gap-6">
@@ -190,24 +184,26 @@
               >
                 <div
                   :class="{
-                    'shadow-2xl recommendedBorder shadow-indigo-400 h-full':
+                    'shadow-2xl recommendedBorder shadow-indigo-400':
                       pl.recommended,
                   }"
                   class="
                     flex flex-col
-                    mt-4
+                    mt-6
                     mx-6
+                    relative
                     items-start
                     paymentCard
                     bg-gray-50
-                    rounded-3xl
+                    rounded-2xl
                   "
                 >
                   <div class="relative w-full">
                     <div
                       :class="{
-                        'bg-violet-100 border-indigo-700': pl.recommended,
-                        'bg-gray-100': !pl.recommended,
+                        'cardRecommendedHeaderContent border-indigo-700':
+                          pl.recommended,
+                        cardHeaderContent: !pl.recommended,
                       }"
                       class="
                         flex flex-col
@@ -279,8 +275,9 @@
                       absolute
                       top-0
                       right-0
-                      mx-28
+                      mx-20
                       p-2
+                      -mt-6
                       bg-indigo-700
                       mb-1
                       text-white
@@ -292,7 +289,8 @@
 
                   <div
                     :class="{
-                      recommendedBorderBtm: pl.recommended,
+                      'recommendedBorder cardFeaturesRecommendedContent':
+                        pl.recommended,
                     }"
                     class="
                       rounded-b-3xl
@@ -303,11 +301,18 @@
                       innerBox
                       self-stretch
                       grow
-                      bg-gray-50
+                      cardFeaturesContent
                     "
                   >
                     <div
-                      class="flex flex-col items-center p-3 text-center gap-6"
+                      class="
+                        flex flex-col
+                        items-center
+                        p-3
+                        text-center
+                        gap-6
+                        mt-9
+                      "
                     >
                       <p
                         v-for="(ft, i) in pl.features"
